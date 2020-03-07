@@ -12,7 +12,7 @@ void main(int argc, char **argv) {
     exit(0);
   }
   int port = atoi(argv[2]);
-  int sockfd;
+  int udp_socket;
   struct sockaddr_in server_addr;
   char buffer[1024];
   socklen_t addr_size;
