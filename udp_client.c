@@ -17,7 +17,7 @@ void main(int argc, char **argv) {
   char buffer[1024];
   socklen_t addr_size;
 
-  sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+  udp_socket = socket(AF_INET, SOCK_DGRAM, 0);
   memset(&server_addr, '\0', sizeof(server_addr));
 
   server_addr.sin_family = AF_INET;
@@ -25,6 +25,6 @@ void main(int argc, char **argv) {
   server_addr.sin_addr.s_addr = inet_addr(argv[1]);
 
   strcpy(buffer, "Hello Server\n");
-  sendto(sockfd, buffer, 1024, 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
+  sendto(udp_socket, buffer, 1024, 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
   printf("[+]Data Send: %s", buffer);
 }
