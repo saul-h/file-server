@@ -24,6 +24,11 @@ void main(int argc, char **argv) {
   server_addr.sin_port = htons(port);
   server_addr.sin_addr.s_addr = inet_addr(argv[1]);
 
+  if (connect(udp_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)) == -1) {
+    printf("Failure to connect to %s\n", argv[1]);
+    exit(EXIT_FAILURE);
+  }
+  
   strcpy(buffer, "Hello Server\n");
   sendto(udp_socket, buffer, 1024, 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
   printf("[+]Data Send: %s", buffer);
